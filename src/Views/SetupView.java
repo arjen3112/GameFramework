@@ -132,7 +132,6 @@ public class SetupView {
         });
         start.setDisable(true);
 
-
         challenge.setOnAction((ActionEvent e) -> {
             if (hasPlayers && hasGames) {
                 switch (game) {
@@ -202,13 +201,13 @@ public class SetupView {
         Slider slider = new Slider();
         slider.setMin(0);
         slider.setMax(2);
-        slider.setValue(1);
+        slider.setValue(2);
         slider.setMinorTickCount(0);
         slider.setMajorTickUnit(1);
         slider.setSnapToTicks(true);
         slider.setShowTickMarks(true);
         slider.setShowTickLabels(true);
-        dataController.setAiDifficulty(1);
+        dataController.setAiDifficulty(2);
 
         slider.setLabelFormatter(new StringConverter<Double>() {
 

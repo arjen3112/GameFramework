@@ -26,7 +26,7 @@ public class EventHandler {
     /**
      * Handles the server response
      * If the response is a SVR response it gives it to the SVR handler
-     * @param response
+     * @param response tbe response from the server
      */
     public void HandleCommand(String response)
     {
@@ -66,12 +66,14 @@ public class EventHandler {
         String command = response.split(" ")[0];
         if("HELP".equals(command))
         {
-            System.out.println("Server gave help information:");
+            //System.out.println("Server gave help information:");
             System.out.println(response);
         }
         if("PLAYERLIST".equals(command))
         {
-            this.PlayerlistHandler(response.substring(11));
+            if(!response.substring(11).equals("[]")) {
+                this.PlayerlistHandler(response.substring(11));
+            }
         }
         if("GAMELIST".equals(command))
         {
@@ -85,7 +87,7 @@ public class EventHandler {
             {
                 case "MATCH" :
                     this.MatchHandler(response.substring(6));
-                    System.out.println("Match started.");
+                    //System.out.println("Match started.");
                     break;
                 case "YOURTURN" :
                     this.TurnHandler(response.substring(9));
@@ -193,6 +195,7 @@ public class EventHandler {
             Yourturn = false;
             playerOne = false;
         }
+        System.out.println("Current dataset + " + dataController.getDataSet());
         if(dataController.getDataSet() == null) {
             if(parameters.get("GAMETYPE").equals("Reversi")) {
                 dataController.setDatasetType(GameType.Reversi);
@@ -308,6 +311,7 @@ public class EventHandler {
     {
         String headerText = "";
         String contentText = "" ;
+        DataController.getInstance().setDatasetType(GameType.Reversi);
 
         switch(state)
         {
